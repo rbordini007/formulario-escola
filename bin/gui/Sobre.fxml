@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="289.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label text="Sobre:">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="10.0" top="5.0" />
+         </padding>
+      </Label>
+      <Label text="CCA Comunidade São Sebastião" textFill="#0a0ada">
+         <font>
+            <Font name="Bookman Old Style" size="14.0" />
+         </font>
+         <padding>
+            <Insets left="20.0" top="5.0" />
+         </padding>
+      </Label>
+      <ImageView fitHeight="137.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@css/CCA.png" />
+         </image>
+         <VBox.margin>
+            <Insets left="50.0" top="30.0" />
+         </VBox.margin>
+      </ImageView>
+   </children>
+</VBox>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.MainViewController">
+   <content>
+      <VBox prefHeight="329.0" prefWidth="468.0">
+         <children>
+            <MenuBar>
+              <menus>
+                  <Menu mnemonicParsing="false" text="Menu">
+                    <items>
+                        <MenuItem fx:id="menuItemCadastroFuncionario" mnemonicParsing="false" onAction="#onMenuItemCadastroFuncionario" text="Cadastro de Funcionários" />
+                        <Menu mnemonicParsing="false" text="Cadastro de Usuários">
+                          <items>
+                            <MenuItem fx:id="menuItemFichaMatricula" mnemonicParsing="false" onAction="#menuItemFichaMatricula" text="Ficha de Matrícula" />
+                              <MenuItem fx:id="menuItemFichaSaude" mnemonicParsing="false" onAction="#menuItemFichaSaude" text="Ficha de Saúde" />
+                          </items>
+                        </Menu>
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Turmas">
+                    <items>
+                      <MenuItem fx:id="menuItemTurma1" mnemonicParsing="false" onAction="#menuItemTurma1" text="Turma 1" />
+                        <MenuItem fx:id="menuItemTurma2" mnemonicParsing="false" onAction="#menuItemTurma2" text="Turma 2" />
+                        <MenuItem fx:id="menuItemTurma3" mnemonicParsing="false" onAction="#menuItemTurma3" text="Turma 3" />
+                        <MenuItem fx:id="menuItemTurma4" mnemonicParsing="false" onAction="#menuItemTurma4" text="Turma 4" />
+                    </items>
+                  </Menu>
+                  <Menu mnemonicParsing="false" text="Atendimentos">
+                    <items>
+                      <MenuItem fx:id="menuItemFormularios" mnemonicParsing="false" onAction="#menuItemFormularios" text="Formulários" />
+                    </items>
+                  </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem fx:id="menuItemSobre" mnemonicParsing="false" onAction="#menuItemSobre" text="Sobre" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
