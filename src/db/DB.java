@@ -14,18 +14,19 @@ public class DB {
 	private static Connection conn = null;
 	
 	public static Connection getConnection() {
-		if(conn == null) {
+		
+			if (conn == null) {
 			try {
-				Properties props = loadProperties();
-				String url = props.getProperty("dburl");			
-				conn = DriverManager.getConnection(url, props);
-				//System.out.println("conectado");
+			Properties props = loadProperties();
+			String url = props.getProperty("dburl");
+			conn = DriverManager.getConnection(url, props);
+			
 			} catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
 		}
+		//System.out.println("conectado");	
 		return conn;
-		
 	}
 	
 	public static void closeConnection() {
@@ -36,17 +37,7 @@ public class DB {
 				throw new DbException(e.getMessage());
 			}
 		}
-	}
-	
-	private static Properties loadProperties() {
-		try (FileInputStream fs = new FileInputStream("db.properties")){
-			Properties props = new Properties();
-			props.load(fs);
-			return props;
-			
-		} catch (IOException e) {
-			throw new DbException(e.getMessage());
-		}		
+		
 	}
 	
 	public static void closeStatement(Statement st) {
@@ -56,7 +47,8 @@ public class DB {
 			} catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
-		}		
+		}
+		
 	}
 	
 	public static void closeResultSet(ResultSet rs) {
@@ -66,7 +58,19 @@ public class DB {
 			} catch (SQLException e) {
 				throw new DbException(e.getMessage());
 			}
-		}		
+		}
+		
+	}	
+	
+	private static Properties loadProperties() {
+		try(FileInputStream fs = new FileInputStream("db.properties")){
+			Properties props = new Properties();
+			props.load(fs);
+			return props;
+		}catch (IOException e) {
+			throw new DbException(e.getMessage());
+		}
 	}
+	
 	
 }

@@ -15,6 +15,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.VBox;
+import model.services.FuncionarioService;
 
 public class MainViewController implements Initializable {
 	
@@ -48,6 +49,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void onMenuItemCadastroFuncionario() {
 		System.out.println("menuItemCadastroFuncionario");
+		loadView2("/gui/CadastroFuncionario.fxml");
 	}
 	
 	@FXML
@@ -83,6 +85,7 @@ public class MainViewController implements Initializable {
 	@FXML
 	public void menuItemFormularios() {
 		System.out.println("menuItemFormularios");
+		
 	}
 	
 	@FXML
@@ -112,6 +115,31 @@ public class MainViewController implements Initializable {
 			mainVBox.getChildren().clear();
 			mainVBox.getChildren().add(mainMenu);
 			mainVBox.getChildren().addAll(newVBox.getChildren());
+			
+			
+		} catch (IOException e) {
+			Alerts.showAlert("Io Exception", "Error loading view", e.getMessage(), AlertType.ERROR);
+		}
+		
+	}
+	
+	private synchronized void loadView2(String AbsolutName) {
+		
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(AbsolutName));
+			VBox newVBox = loader.load();
+			
+			Scene mainScene = Main.getMainScene();
+			VBox mainVBox = (VBox)((ScrollPane) mainScene.getRoot()).getContent();
+			
+			Node mainMenu = mainVBox.getChildren().get(0);
+			mainVBox.getChildren().clear();
+			mainVBox.getChildren().add(mainMenu);
+			mainVBox.getChildren().addAll(newVBox.getChildren());
+			
+			CadastroFuncionarioController controller = loader.getController();
+			controller.setFuncionarioService(new FuncionarioService());
+			controller.updateTableView();
 			
 			
 		} catch (IOException e) {
