@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="401.0" prefWidth="532.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastroFuncionarioController">
+<VBox prefHeight="401.0" prefWidth="661.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CadastroFuncionarioController">
    <children>
       <Label text="Registro de Funcionários">
          <font>
@@ -21,16 +21,18 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNew" prefHeight="25.0" prefWidth="87.0" text="New" />
+          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" prefHeight="25.0" prefWidth="87.0" text="New" />
         </items>
       </ToolBar>
-      <TableView fx:id="tableViewFuncionario" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="tableViewFuncionario" prefHeight="200.0" prefWidth="546.0">
         <columns>
           <TableColumn fx:id="tableColumnId" prefWidth="47.0" text="Id" />
-          <TableColumn fx:id="tableColumnNome" prefWidth="104.0" text="Nome" />
-            <TableColumn fx:id="tableColumnRg" prefWidth="125.0" text="Rg" />
-            <TableColumn fx:id="tableColumnCpf" prefWidth="93.0" text="Cpf" />
-            <TableColumn fx:id="tableColumnTelefone" prefWidth="101.0" text="Telefone" />
+          <TableColumn fx:id="tableColumnNome" prefWidth="182.0" text="Nome" />
+            <TableColumn fx:id="tableColumnRg" prefWidth="108.0" text="Rg" />
+            <TableColumn fx:id="tableColumnCpf" prefWidth="108.0" text="Cpf" />
+            <TableColumn fx:id="tableColumnTelefone" prefWidth="109.0" text="Telefone" />
+            <TableColumn fx:id="tableColumnEdit" minWidth="23.0" prefWidth="69.0" />
+            <TableColumn fx:id="tableColumnRemove" minWidth="22.0" prefWidth="34.0" />
         </columns>
       </TableView>
       <Label text="Label" />

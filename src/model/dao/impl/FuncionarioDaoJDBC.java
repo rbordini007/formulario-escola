@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,25 +20,88 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 	public FuncionarioDaoJDBC(Connection conn) {		
 		this.conn = conn;
 	}
-
+	
+	//================= insert ==================
 	@Override
 	public void insert(Funcionario obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement(
+					"Insert Into escola.funcionario "
+					+ "(Nome, Rg, Cpf, Telefone) "
+					+ "Values "
+					+ "(?, ?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getRg());
+			st.setString(3, obj.getCpf());
+			st.setString(4, obj.getTelefone());
+			
+			int rowsAffected = st.executeUpdate();
+			
+			if (rowsAffected > 0) {
+				ResultSet rs = st.getGeneratedKeys();
+				if (rs.next()) {
+					int id = rs.getInt(1);
+					obj.setId(id);
+				}
+				DB.closeResultSet(rs);
+			}else {
+				throw new DbException("Unexpected error: No rows affected");
+			}		
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}
 		
 	}
 
+	// ================ update =================
 	@Override
 	public void update(Funcionario obj) {
-		// TODO Auto-generated method stub
+		PreparedStatement st = null;
 		
+		try {
+			st = conn.prepareStatement(
+					"Update escola.funcionario Set "
+					+ "Nome = ?, Rg = ?, Cpf = ?, Telefone = ? "
+					+ "where id = ?");
+			st.setString(1, obj.getNome());
+			st.setString(2, obj.getRg());
+			st.setString(3, obj.getCpf());
+			st.setString(4, obj.getTelefone());
+			st.setInt(5, obj.getId());
+			
+			st.executeUpdate();			
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}		
 	}
 
+	// ================= Delete By Id ===================
 	@Override
 	public void deleteById(Integer id) {
-		// TODO Auto-generated method stub
-		
+		PreparedStatement st = null;
+		try {
+			st = conn.prepareStatement("delete from escola.funcionario where Id = ?");
+			
+			st.setInt(1, id);
+			st.executeUpdate();
+			
+		} catch (SQLException e) {
+			throw new DbException(e.getMessage());
+		}finally {
+			DB.closeStatement(st);
+		}		
 	}
-
+	
+	// =============== Find By Id =======================
 	@Override
 	public Funcionario findById(Integer id) {
 		PreparedStatement st = null;
@@ -69,6 +133,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 		}
 	}
 
+	// =================== Find All =====================
 	@Override
 	public List<Funcionario> findAll() {
 		PreparedStatement st = null;

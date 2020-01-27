@@ -1,6 +1,5 @@
 package model.services;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import model.dao.DaoFactory;
@@ -24,6 +23,18 @@ public class FuncionarioService {
 		 */
 		
 		return dao.findAll();
+	}
+	
+	public void saveOrUpdate(Funcionario obj) {
+		if (obj.getId() == null) {
+			dao.insert(obj);
+		}else {
+			dao.update(obj);
+		}
+	}
+	
+	public void remove(Funcionario obj) {
+		dao.deleteById(obj.getId());
 	}
 
 }
