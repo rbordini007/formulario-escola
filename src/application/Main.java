@@ -21,7 +21,8 @@ public class Main extends Application {
 			
 			mainScene = new Scene(scrollPane);
 			primaryStage.setScene(mainScene);
-			primaryStage.setTitle("CCA Comunidade São Sebastião");
+			primaryStage.setTitle("ONG (São Paulo) - Sistema de cadastro e relatorio de Crianças");
+			
 			primaryStage.show();
 		} catch(Exception e) {
 			e.printStackTrace();

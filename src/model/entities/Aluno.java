@@ -1,32 +1,33 @@
 package model.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 
-public class Funcionario implements Serializable{
+public class Aluno extends Funcionario implements Serializable  {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String nome;
 	private String rg;
-	private String cpf;
+	private Date dataNascimento;
 	private String telefone;
+	private Funcionario funcionario;
 	
-	public Funcionario() {
-	}
-	
-	public Funcionario(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
-	}
-	
+	public Aluno() {
+			}	
 
-	public Funcionario(Integer id, String nome, String rg, String cpf, String telefone) {
+	public Aluno(Integer id, String nome, String rg, Date dataNascimento, String telefone) {			
 		this.id = id;
 		this.nome = nome;
 		this.rg = rg;
-		this.cpf = cpf;
+		this.dataNascimento = dataNascimento;
 		this.telefone = telefone;
+	}
+
+	public Aluno(Integer id, String nome, String rg, Date dataNascimento, String telefone, Funcionario funcionario) {		
+		this(id, nome, rg, dataNascimento, telefone);		
+		this.funcionario = funcionario;
 	}
 
 	public Integer getId() {
@@ -53,12 +54,12 @@ public class Funcionario implements Serializable{
 		this.rg = rg;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
 
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 
 	public String getTelefone() {
@@ -68,7 +69,15 @@ public class Funcionario implements Serializable{
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-	
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -85,7 +94,7 @@ public class Funcionario implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionario other = (Funcionario) obj;
+		Aluno other = (Aluno) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,8 +105,8 @@ public class Funcionario implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", telefone=" + telefone
-				+ "]";
-	}	
+		return "Aluno [id=" + id + ", nome=" + nome + ", rg=" + rg + ", dataNascimento=" + dataNascimento
+				+ ", telefone=" + telefone + ", funcionario=" + funcionario + "]";
+	}
 	
 }

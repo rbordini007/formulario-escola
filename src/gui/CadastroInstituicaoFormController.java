@@ -19,44 +19,46 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
-import model.entities.Funcionario;
+import model.entities.Instituicao;
 import model.exceptions.ValidationException;
-import model.services.FuncionarioService;
+import model.services.InstituicaoService;
 
-public class CadastroFuncionarioFormController implements Initializable {
+public class CadastroInstituicaoFormController implements Initializable{
 	
-	private Funcionario entity;
+	private Instituicao entity;
 	
-	private FuncionarioService service;
+	private InstituicaoService service;
 	
 	private List<DataChangeListener> dataChangeListener = new ArrayList<DataChangeListener>();
 	
 	@FXML
 	private TextField txtId;
+	
 	@FXML
 	private TextField txtNome;
+	
 	@FXML
-	private TextField txtRg;
-	@FXML
-	private TextField txtCpf;
+	private TextField txtEmail;
+	
 	@FXML
 	private TextField txtTelefone;
+	
 	@FXML
-	private Button btSalvar;
+	private Button btSave;
+	
 	@FXML
 	private Button btCancel;
+	
 	@FXML
 	private Label labelErrorNome;
 	@FXML
-	private Label labelErrorRg;
-	@FXML
-	private Label labelErrorCpf;
+	private Label labelErrorEmail;
 	@FXML
 	private Label labelErrorTelefone;
 	
 	@FXML
 	public void onBtSaveAction(ActionEvent event) {
-		//System.out.println("onBtSaveAction");
+		System.out.println("onBtSaveAction");
 		if (entity == null) {
 			throw new IllegalStateException("entity was null");
 		}
@@ -66,8 +68,8 @@ public class CadastroFuncionarioFormController implements Initializable {
 		try {
 			entity = getFormData();
 			service.saveOrUpdate(entity);
-			notifyDataChangeListeners();
-			Utils.currentStage(event).close();
+			notifyDataChangeListeners();			
+			Utils.currentStage(event).close();			
 		} catch (DbException e) {
 			Alerts.showAlert("Error saving object", null, e.getMessage(), AlertType.ERROR);
 		}catch (ValidationException e) {
@@ -75,30 +77,27 @@ public class CadastroFuncionarioFormController implements Initializable {
 		}		
 	}
 	
-	private Funcionario getFormData() {
-		Funcionario obj = new Funcionario();
-		ValidationException exception = new ValidationException("Validation error");
+	private Instituicao getFormData() {
+		Instituicao obj = new Instituicao();
+		ValidationException exception = new ValidationException("validation error");
 		obj.setId(Utils.tryParseToInt(txtId.getText()));
-		
 		if (txtNome.getText() == null) {
-			exception.addError("nome", "O campo não pode estar Vazio");
+			txtNome.setPromptText("");
+			exception.addError("nome", " O campo não pode estar Vazio");
 		}
 		obj.setNome(txtNome.getText());
 		
-		if (txtRg.getText() == null) {
-			exception.addError("rg", "O campo não pode estar Vazio");
+		if (txtEmail.getText() == null) {
+			txtEmail.setPromptText("");
+			exception.addError("email", " O campo não pode estar Vazio");
 		}
-		obj.setRg(txtRg.getText());
-		
-		if (txtCpf.getText() == null) {
-			exception.addError("cpf", "O campo não pode estar Vazio");
-		}
-		obj.setCpf(txtCpf.getText());
+		obj.setEmail(txtEmail.getText());
 		
 		if (txtTelefone.getText() == null) {
-			exception.addError("telefone", "O campo não pode estar Vazio");
-		}
-		obj.setTelefone(txtTelefone.getText());
+			txtTelefone.setPromptText("");
+			exception.addError("telefone", " O campo não pode estar Vazio");
+		}		
+		obj.setTelefone(txtTelefone.getText());	
 		
 		if (exception.getErrors().size() > 0) {
 			throw exception;
@@ -106,46 +105,43 @@ public class CadastroFuncionarioFormController implements Initializable {
 		
 		return obj;
 	}
-	
+
 	@FXML
 	public void onBtCancelAction(ActionEvent event) {
-		//System.out.println("OnBtCancelAction");
+		System.out.println("onBtCancelAction");
 		Utils.currentStage(event).close();
-	}	
+	}
 	
-	//============= Setters ==================//
-	public void setFuncionario(Funcionario entity) {
+	//================== setters ===================
+	public void setInstituicao(Instituicao entity) {
 		this.entity = entity;
 	}
-
-	public void setFuncionarioService(FuncionarioService service) {
+	
+	public void setInstituicaoService(InstituicaoService service) {
 		this.service = service;
 	}
 	
 	public void subscribeDataChangeListeners(DataChangeListener listener) {
 		this.dataChangeListener.add(listener);
 	}
-
-	//=========================================//
-
+	//==============================================
+	
 	private void notifyDataChangeListeners() {
 		dataChangeListener.forEach((listener) -> {
 			listener.onDataChange();
 		});
 	}
 
-
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
-			inititializeNodes();	
+		initializeNodes();		
 	}
 
-	private void inititializeNodes() {
+	private void initializeNodes() {
 		Constraints.setTextFieldInteger(txtId);
-		Constraints.setTextFieldMaxLength(txtNome, 60);
-		Constraints.setTextFieldMaxLength(txtRg, 12);
-		Constraints.setTextFieldMaxLength(txtCpf, 14);
-		Constraints.setTextFieldMaxLength(txtTelefone, 10);		
+		Constraints.setTextFieldMaxLength(txtNome, 70);
+		Constraints.setTextFieldMaxLength(txtEmail, 70);
+		Constraints.setTextFieldMaxLength(txtTelefone, 10);
 	}
 	
 	public void updateFormData() {
@@ -154,10 +150,9 @@ public class CadastroFuncionarioFormController implements Initializable {
 		}
 		txtId.setText(String.valueOf(entity.getId()));
 		txtNome.setText(entity.getNome());
-		txtRg.setText(entity.getRg());
-		txtCpf.setText(entity.getCpf());
-		txtTelefone.setText(entity.getTelefone());
-	}
+		txtEmail.setText(entity.getEmail());
+		txtTelefone.setText(entity.getTelefone());		
+	}	
 	
 	private void setErrorMessages(Map<String, String> errors) {
 		Set<String>fields = errors.keySet();
@@ -165,15 +160,11 @@ public class CadastroFuncionarioFormController implements Initializable {
 		if (fields.contains("nome")) {
 			labelErrorNome.setText(errors.get("nome"));
 		}
-		if (fields.contains("rg")) {
-			labelErrorRg.setText(errors.get("rg"));
-		}
-		if (fields.contains("cpf")) {
-			labelErrorCpf.setText(errors.get("cpf"));
-		}
+		if (fields.contains("email")) {
+			labelErrorEmail.setText(errors.get("email"));
+		}		
 		if (fields.contains("telefone")) {
 			labelErrorTelefone.setText(errors.get("telefone"));
-		}
+		}		
 	}
-
 }

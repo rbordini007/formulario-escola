@@ -21,7 +21,7 @@
       </Label>
       <ToolBar prefHeight="40.0" prefWidth="200.0">
         <items>
-          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" prefHeight="25.0" prefWidth="87.0" text="New" />
+          <Button fx:id="btNew" mnemonicParsing="false" onAction="#onBtNewAction" prefHeight="25.0" prefWidth="109.0" text="Novo cadastro" />
         </items>
       </ToolBar>
       <TableView fx:id="tableViewFuncionario" prefHeight="200.0" prefWidth="546.0">

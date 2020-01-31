@@ -27,7 +27,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 		PreparedStatement st = null;
 		try {
 			st = conn.prepareStatement(
-					"Insert Into escola.funcionario "
+					"Insert Into formulario_escola.funcionario "
 					+ "(Nome, Rg, Cpf, Telefone) "
 					+ "Values "
 					+ "(?, ?, ?, ?)",
@@ -66,7 +66,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 		
 		try {
 			st = conn.prepareStatement(
-					"Update escola.funcionario Set "
+					"Update formulario_escola.funcionario Set "
 					+ "Nome = ?, Rg = ?, Cpf = ?, Telefone = ? "
 					+ "where id = ?");
 			st.setString(1, obj.getNome());
@@ -89,7 +89,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 	public void deleteById(Integer id) {
 		PreparedStatement st = null;
 		try {
-			st = conn.prepareStatement("delete from escola.funcionario where Id = ?");
+			st = conn.prepareStatement("delete from formulario_escola.funcionario where Id = ?");
 			
 			st.setInt(1, id);
 			st.executeUpdate();
@@ -108,7 +108,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement("SELECT * FROM escola.funcionario where Id =?");
+			st = conn.prepareStatement("SELECT * FROM formulario_escola.funcionario where Id =?");
 			
 			st.setInt(1, id);
 			rs = st.executeQuery();
@@ -140,7 +140,7 @@ public class FuncionarioDaoJDBC implements FuncionarioDao {
 		ResultSet rs = null;
 		
 		try {
-			st = conn.prepareStatement("SELECT * FROM escola.funcionario Order By Nome");
+			st = conn.prepareStatement("SELECT * FROM formulario_escola.funcionario Order By Nome");
 			
 			rs = st.executeQuery();
 			

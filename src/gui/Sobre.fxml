@@ -4,8 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <VBox prefHeight="289.0" prefWidth="429.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -28,13 +30,30 @@
             <Insets left="20.0" top="5.0" />
          </padding>
       </Label>
-      <ImageView fitHeight="137.0" fitWidth="419.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@css/CCA.png" />
-         </image>
-         <VBox.margin>
-            <Insets left="50.0" top="30.0" />
-         </VBox.margin>
-      </ImageView>
+      <BorderPane prefHeight="198.0" prefWidth="413.0">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <left>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sistema de cadastro de instituição, funcionario, aluno, ficha de cadastro da familia, ficha medica, relatorio de turma." textAlignment="CENTER" wrappingWidth="183.13671875" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="5.0" />
+               </BorderPane.margin>
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Text>
+         </left>
+         <center>
+            <ImageView fitHeight="306.0" fitWidth="338.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@css/JavaImagem.jpg" />
+               </image>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+            </ImageView>
+         </center>
+      </BorderPane>
    </children>
 </VBox>

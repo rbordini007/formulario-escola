@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -17,6 +18,7 @@
               <menus>
                   <Menu mnemonicParsing="false" text="Menu">
                     <items>
+                        <MenuItem fx:id="menuItemCadastroInstituicao" mnemonicParsing="false" onAction="#onMenuItemCadastroInstitucao" text="Cadastro da Instituição" />
                         <MenuItem fx:id="menuItemCadastroFuncionario" mnemonicParsing="false" onAction="#onMenuItemCadastroFuncionario" text="Cadastro de Funcionários" />
                         <Menu mnemonicParsing="false" text="Cadastro de Usuários">
                           <items>
@@ -46,13 +48,16 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ImageView fitHeight="223.0" fitWidth="471.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageViewPricipal" fitHeight="374.0" fitWidth="685.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@css/CCPrincipal.png" />
+                  <Image url="@css/SistemaDaInformação.jpg" />
                </image>
                <VBox.margin>
-                  <Insets left="40.0" top="50.0" />
+                  <Insets bottom="-1.0" left="-1.0" right="-1.0" top="-1.0" />
                </VBox.margin>
+               <viewport>
+                  <Rectangle2D />
+               </viewport>
             </ImageView>
          </children>
       </VBox>

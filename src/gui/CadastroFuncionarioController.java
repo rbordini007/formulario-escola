@@ -4,8 +4,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import javax.swing.text.html.ImageView;
-
 import application.Main;
 import db.DbIntegrityException;
 import gui.listeners.DataChangeListener;
@@ -43,28 +41,20 @@ public class CadastroFuncionarioController implements Initializable, DataChangeL
 	
 	@FXML
 	private TableView<Funcionario> tableViewFuncionario;
-
 	@FXML
 	private TableColumn<Funcionario, Integer> tableColumnId;
-
 	@FXML
 	private TableColumn<Funcionario, String> tableColumnNome;
-
 	@FXML
 	private TableColumn<Funcionario, String> tableColumnRg;
-
 	@FXML
 	private TableColumn<Funcionario, String> tableColumnCpf;
-
 	@FXML
 	private TableColumn<Funcionario, String> tableColumnTelefone;
-
 	@FXML
 	private TableColumn<Funcionario, Funcionario> tableColumnEdit;
-
 	@FXML
 	private TableColumn<Funcionario, Funcionario> tableColumnRemove;
-
 	@FXML
 	private Button btNew;
 

@@ -2,31 +2,28 @@ package model.entities;
 
 import java.io.Serializable;
 
-public class Funcionario implements Serializable{
+public class Instituicao implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
+	
 	private String nome;
-	private String rg;
-	private String cpf;
+	
+	private String email;
+	
 	private String telefone;
 	
-	public Funcionario() {
-	}
-	
-	public Funcionario(Integer id, String nome) {
-		this.id = id;
-		this.nome = nome;
-	}
-	
 
-	public Funcionario(Integer id, String nome, String rg, String cpf, String telefone) {
+
+	public Instituicao(Integer id, String nome, String email, String telefone) {		
 		this.id = id;
 		this.nome = nome;
-		this.rg = rg;
-		this.cpf = cpf;
-		this.telefone = telefone;
+		this.email = email;
+		this.telefone = telefone;		
+	}
+
+	public Instituicao() {		
 	}
 
 	public Integer getId() {
@@ -45,20 +42,12 @@ public class Funcionario implements Serializable{
 		this.nome = nome;
 	}
 
-	public String getRg() {
-		return rg;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setRg(String rg) {
-		this.rg = rg;
-	}
-
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getTelefone() {
@@ -85,7 +74,7 @@ public class Funcionario implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Funcionario other = (Funcionario) obj;
+		Instituicao other = (Instituicao) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -96,8 +85,7 @@ public class Funcionario implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", telefone=" + telefone
+		return "Instituicao [id=" + id + ", nome=" + nome + ", email=" + email + ", telefone=" + telefone
 				+ "]";
-	}	
-	
+	}
 }
